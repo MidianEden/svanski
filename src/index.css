@@ -1,0 +1,91 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+}
+
+:root {
+  --bg: #000000;
+  --text: #f4efe6;
+  --muted: rgba(244, 239, 230, 0.58);
+  --mx: 50%;
+  --my: 20%;
+  --gold-accent: linear-gradient(
+    90deg,
+    #9f6f19 0%,
+    #d8a73a 18%,
+    #fff0a6 36%,
+    #f3c75b 58%,
+    #b88422 78%,
+    #fff1b8 100%
+  );
+  --rainbow-accent: linear-gradient(
+    90deg,
+    #ff6b79 0%,
+    #ffb960 20%,
+    #f6ff73 38%,
+    #5de5be 58%,
+    #6ba8ff 78%,
+    #cf7fff 100%
+  );
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  font-family: var(--font-sans);
+  background: #000000;
+  color: var(--text);
+  text-rendering: optimizeLegibility;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+::selection {
+  background: rgba(255, 255, 255, 0.14);
+  color: white;
+}
+
+.gold-text {
+  background-image: var(--gold-accent);
+  background-size: 180% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gold-shimmer 5s linear infinite;
+}
+
+.gold-pill {
+  background-image: var(--gold-accent);
+  background-size: 180% 100%;
+  animation: gold-shimmer 4.5s linear infinite;
+  box-shadow:
+    0 0 18px rgba(255, 214, 102, 0.28),
+    0 0 34px rgba(216, 167, 58, 0.14);
+}
+
+@keyframes gold-shimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  100% {
+    background-position: 180% 50%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gold-text,
+  .gold-pill {
+    animation: none;
+  }
+}
