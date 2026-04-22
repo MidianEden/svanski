@@ -57,11 +57,18 @@ body {
 
 .gold-text {
   background-image: var(--gold-accent);
-  background-size: 180% 100%;
+  background-size: 220% 100%;
   -webkit-background-clip: text;
   background-clip: text;
+  -webkit-text-fill-color: transparent;
   color: transparent;
+  display: inline-block;
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
+  line-height: 1.08;
+  filter: drop-shadow(0 0 10px rgba(255, 220, 120, 0.1));
   animation: gold-shimmer 5s linear infinite;
+  will-change: background-position;
 }
 
 .gold-pill {

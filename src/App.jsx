@@ -24,6 +24,12 @@ const ventures = [
     detail:
       "3d printed toy brand. this was one of the first things that made me feel like ok yeah i can actually make something people want and buy.",
     notes: ["3d printed", "audience growth", "founder led"],
+    links: [
+      {
+        label: "tiktok",
+        href: "https://www.tiktok.com/@littlementoys?_r=1&_t=ZP-95jugUqjuJD",
+      },
+    ],
   },
   {
     id: "hollow",
@@ -34,6 +40,7 @@ const ventures = [
     detail:
       "built around the 0W watch and zero, the software side behind it. its paused cause of money rn but im definitely not done with it.",
     notes: ["watch + software", "paused not dead", "long term priority"],
+    links: [{ label: "site", href: "https://gethollow.com" }],
   },
   {
     id: "neuto",
@@ -44,6 +51,13 @@ const ventures = [
     detail:
       "more about attention and training your mind instead of just outsourcing everything. not active rn but i still care about the idea.",
     notes: ["cognition", "mental training", "maybe later"],
+    links: [
+      { label: "site", href: "https://neuto.app" },
+      {
+        label: "app store",
+        href: "https://apps.apple.com/us/app/neuto-brain-training/id6760794030",
+      },
+    ],
   },
   {
     id: "nomax-games",
@@ -54,6 +68,12 @@ const ventures = [
     detail:
       "keratin came from an anime idea i had when i was younger. its part game part worldbuilding and part me figuring out how to turn ideas into real stuff.",
     notes: ["roblox studio", "original ip", "worldbuilding"],
+    links: [
+      {
+        label: "roblox",
+        href: "https://www.roblox.com/games/125741113322320/Keratin",
+      },
+    ],
   },
 ];
 
@@ -84,10 +104,139 @@ const blogPlaceholder = {
 };
 
 const sectionLabelClass =
-  "font-mono text-[0.7rem] tracking-[0.18em] text-white/42";
+  "flex items-center gap-2 font-mono text-[0.7rem] tracking-[0.18em] text-white/42";
 
-function SectionLabel({ children }) {
-  return <p className={sectionLabelClass}>{children}</p>;
+function TinyIcon({ children, className = "h-3.5 w-3.5" }) {
+  return (
+    <span className={`inline-flex shrink-0 items-center justify-center ${className}`}>
+      {children}
+    </span>
+  );
+}
+
+function NoteIcon() {
+  return (
+    <TinyIcon>
+      <svg viewBox="0 0 16 16" fill="none" className="h-full w-full">
+        <path
+          d="M4 2.75h8a1 1 0 0 1 1 1v8.5l-2.8-2.05a1 1 0 0 0-1.18 0L6.2 12.25 3 9.9V3.75a1 1 0 0 1 1-1Z"
+          stroke="currentColor"
+          strokeWidth="1.2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    </TinyIcon>
+  );
+}
+
+function GridIcon() {
+  return (
+    <TinyIcon>
+      <svg viewBox="0 0 16 16" fill="none" className="h-full w-full">
+        <path
+          d="M3 3.5h4.2v4.2H3zM8.8 3.5H13v4.2H8.8zM3 9.3h4.2v4.2H3zM8.8 9.3H13v4.2H8.8z"
+          stroke="currentColor"
+          strokeWidth="1.2"
+          strokeLinejoin="round"
+        />
+      </svg>
+    </TinyIcon>
+  );
+}
+
+function OrbitIcon() {
+  return (
+    <TinyIcon>
+      <svg viewBox="0 0 16 16" fill="none" className="h-full w-full">
+        <circle cx="8" cy="8" r="1.6" fill="currentColor" />
+        <path
+          d="M13.2 8c0 2.87-2.33 5.2-5.2 5.2S2.8 10.87 2.8 8 5.13 2.8 8 2.8"
+          stroke="currentColor"
+          strokeWidth="1.2"
+          strokeLinecap="round"
+        />
+        <path
+          d="M4.2 11.7c-.95-1.36-.45-3.4 1.1-4.55s3.6-.98 4.55.37"
+          stroke="currentColor"
+          strokeWidth="1.2"
+          strokeLinecap="round"
+        />
+      </svg>
+    </TinyIcon>
+  );
+}
+
+function SparkIcon() {
+  return (
+    <TinyIcon>
+      <svg viewBox="0 0 16 16" fill="none" className="h-full w-full">
+        <path
+          d="m8 2 1.25 3.25L12.5 6.5 9.25 7.75 8 11 6.75 7.75 3.5 6.5l3.25-1.25L8 2Z"
+          stroke="currentColor"
+          strokeWidth="1.2"
+          strokeLinejoin="round"
+        />
+      </svg>
+    </TinyIcon>
+  );
+}
+
+function LineChartIcon() {
+  return (
+    <TinyIcon>
+      <svg viewBox="0 0 16 16" fill="none" className="h-full w-full">
+        <path
+          d="M2.8 12.7h10.4M4 10.1l2.1-2.3 1.7 1.4 3.4-4"
+          stroke="currentColor"
+          strokeWidth="1.2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    </TinyIcon>
+  );
+}
+
+function ExternalIcon() {
+  return (
+    <TinyIcon className="h-3 w-3">
+      <svg viewBox="0 0 16 16" fill="none" className="h-full w-full">
+        <path
+          d="M6 4h6v6M10.8 5.2 4.5 11.5"
+          stroke="currentColor"
+          strokeWidth="1.2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    </TinyIcon>
+  );
+}
+
+function LinkIcon({ label }) {
+  if (label === "app store") {
+    return <GridIcon />;
+  }
+
+  if (label === "roblox") {
+    return <GridIcon />;
+  }
+
+  if (label === "tiktok") {
+    return <SparkIcon />;
+  }
+
+  return <OrbitIcon />;
+}
+
+function SectionLabel({ children, icon = <SparkIcon /> }) {
+  return (
+    <p className={sectionLabelClass}>
+      {icon}
+      <span>{children}</span>
+    </p>
+  );
 }
 
 function AccentText({ children, tone = "rainbow" }) {
@@ -252,7 +401,28 @@ function VentureRow({ venture, isExpanded, onToggle }) {
       >
         <div className="min-h-0">
           <div className="grid gap-6 border-t border-white/8 pt-5 text-white/58 sm:grid-cols-[minmax(0,1fr)_15rem] sm:gap-10">
-            <p className="max-w-2xl text-[0.98rem] leading-7">{venture.detail}</p>
+            <div className="space-y-5">
+              <p className="max-w-2xl text-[0.98rem] leading-7">{venture.detail}</p>
+
+              {venture.links?.length ? (
+                <div className="flex flex-wrap gap-2">
+                  {venture.links.map((link) => (
+                    <a
+                      key={link.href}
+                      href={link.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-2 rounded-full border border-white/10 px-3 py-1.5 font-mono text-[0.68rem] tracking-[0.18em] text-white/46 transition hover:border-white/18 hover:text-white"
+                      onClick={(event) => event.stopPropagation()}
+                    >
+                      <LinkIcon label={link.label} />
+                      {link.label}
+                      <ExternalIcon />
+                    </a>
+                  ))}
+                </div>
+              ) : null}
+            </div>
 
             <ul className="space-y-2 font-mono text-[0.72rem] tracking-[0.18em] text-white/36">
               {venture.notes.map((note) => (
@@ -437,7 +607,7 @@ export default function App() {
         </section>
 
         <section className="max-w-4xl" id="about">
-          <SectionLabel>context</SectionLabel>
+          <SectionLabel icon={<OrbitIcon />}>context</SectionLabel>
 
           <div className="mt-8 space-y-7">
             <p className="max-w-3xl text-lg leading-8 text-white/62 sm:text-[1.18rem]">
@@ -461,7 +631,10 @@ export default function App() {
               <div className="flex flex-wrap items-end justify-between gap-4">
                 <div>
                   <p className="font-mono text-[0.72rem] tracking-[0.18em] text-white/38">
-                    {moneyTracker.label}
+                    <span className="inline-flex items-center gap-2">
+                      <LineChartIcon />
+                      <span>{moneyTracker.label}</span>
+                    </span>
                   </p>
                   <p className="mt-3 text-4xl font-semibold tracking-[-0.08em] text-white sm:text-5xl">
                     {moneyTracker.amount}
@@ -491,7 +664,7 @@ export default function App() {
         </section>
 
         <section className="max-w-4xl">
-          <SectionLabel>current focus</SectionLabel>
+          <SectionLabel icon={<SparkIcon />}>current focus</SectionLabel>
 
           <div className="mt-8 border-t border-white/10 pt-9">
             <p className="max-w-3xl text-3xl font-semibold tracking-[-0.08em] text-white sm:text-[2.8rem] sm:leading-[1.02]">
@@ -504,7 +677,7 @@ export default function App() {
         </section>
 
         <section className="max-w-5xl">
-          <SectionLabel>journal</SectionLabel>
+          <SectionLabel icon={<NoteIcon />}>journal</SectionLabel>
 
           <div className="mt-8 grid gap-4 sm:grid-cols-3">
             {journalBits.map((item, index) => (
@@ -541,7 +714,7 @@ export default function App() {
         </section>
 
         <section className="max-w-5xl" id="blog">
-          <SectionLabel>blog</SectionLabel>
+          <SectionLabel icon={<NoteIcon />}>blog</SectionLabel>
 
           <div className="mt-8">
             <article className="rounded-[1.4rem] border border-white/10 bg-white/[0.02] p-5 sm:p-7">
@@ -570,7 +743,7 @@ export default function App() {
         </section>
 
         <section className="max-w-4xl" id="ventures">
-          <SectionLabel>ventures</SectionLabel>
+          <SectionLabel icon={<GridIcon />}>ventures</SectionLabel>
 
           <div className="mt-6 border-b border-white/10">
             {ventures.map((venture) => (
@@ -585,7 +758,7 @@ export default function App() {
         </section>
 
         <section className="max-w-4xl">
-          <SectionLabel>everything</SectionLabel>
+          <SectionLabel icon={<SparkIcon />}>everything</SectionLabel>
 
           <div className="group mt-8 border-t border-white/10 pt-9">
             <p className="max-w-3xl text-3xl font-semibold tracking-[-0.08em] text-white sm:text-[2.8rem] sm:leading-[1.02]">
@@ -612,7 +785,7 @@ export default function App() {
         </section>
 
         <section className="max-w-3xl" id="vision">
-          <SectionLabel>vision</SectionLabel>
+          <SectionLabel icon={<SparkIcon />}>vision</SectionLabel>
 
           <div className="mt-8 border-t border-white/10 pt-9">
             <p className="text-2xl font-semibold tracking-[-0.08em] text-white sm:text-[2.4rem] sm:leading-[1.05]">
